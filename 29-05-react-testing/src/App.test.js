@@ -1,44 +1,38 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import App from "./App";
 
-// test("renders learn react link", () => {
-//   render(<App />);
-//   const linkElement = screen.getByText(/learn react/i);
-//   expect(linkElement).toBeInTheDocument();
-// });
-
 test("button click flow", () => {
   render(<App />);
-  const buttonElement = screen.getByRole("button", { name: /blau/i });
+  const buttonElement = screen.getByRole("button", { name: /Farbe zu blau wechseln/i });
   expect(buttonElement).toHaveClass("rot");
 
-  // button klicken
+  // Button klicken
   fireEvent.click(buttonElement);
-  // buttonelement hat die Klasse "blau"
+  // Buttonelement hat die Klasse "blau"
   expect(buttonElement).toHaveClass("blau");
 });
-
 
 test("checkbox click flow", () => {
   render(<App />);
 
-  //elemente finden
-  const buttonElement = screen.getByRole("button", {name: /blau/i})
-  const checkBoxElement = screen.getByRole("checkbox", {name: /disable button/i})
+  // Elemente finden
+  const buttonElement = screen.getByRole("button", { name: /Farbe zu blau wechseln/i });
+  const checkBoxElement = screen.getByRole("checkbox", { name: /disable button/i });
 
-  //check initialer Zustand unserer Elemente
-  expect(buttonElement).toBeEnabled()
-  expect(checkBoxElement).not.toBeChecked()
+  // Check initialer Zustand unserer Elemente
+  expect(buttonElement).toBeEnabled();
+  expect(buttonElement).toHaveClass("rot"); // initial color
+  expect(checkBoxElement).not.toBeChecked();
 
-  // click checkbox um button zu disablen
-  fireEvent.click(checkBoxElement)
-  expect(checkBoxElement).toBeChecked()
-  expect(buttonElement).toBeDisabled()
-  
-  // click checkbox um button wieder zu enablen
-  fireEvent.click(checkBoxElement)
-  expect(checkBoxElement).not.toBeChecked()
-  expect(buttonElement).toBeEnabled()
+  // Click checkbox um button zu disablen
+  fireEvent.click(checkBoxElement);
+  expect(checkBoxElement).toBeChecked();
+  expect(buttonElement).toBeDisabled();
+  expect(buttonElement).toHaveClass("gray");
 
-
-})
+  // Click checkbox um button wieder zu enablen
+  fireEvent.click(checkBoxElement);
+  expect(checkBoxElement).not.toBeChecked();
+  expect(buttonElement).toBeEnabled();
+  expect(buttonElement).toHaveClass("rot"); // initial color
+});
