@@ -1,5 +1,5 @@
-// const { plus, mal, geteilt, minus, randomNumber } = require("./calculator");
-import { plus, mal, geteilt, minus, randomNumber } from "./calculator";
+const { plus, mal, geteilt, minus, randomNumber } = require("./calculator");
+// import { plus, mal, geteilt, minus, randomNumber } from "./calculator";
 /*
 test("Mal Funktion (5*6)", () => {
   const ergebnis = mal(5, 6);
